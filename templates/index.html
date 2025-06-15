@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cyberbullying Detector</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="box">
+        <div class="title-container">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="36"
+            height="36"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="shield-icon"
+          >
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          <h1>Cyberbullying Detector</h1>
+        </div>
+        <p class="subtitle">
+          Analyze text to detect potential cyberbullying content using AI.
+        </p>
+
+        <form method="POST" id="prediction-form">
+          <textarea
+            name="tweet"
+            placeholder="Paste your tweet or message here..."
+            required
+          ></textarea>
+          <button type="submit" id="analyze-button">
+            <span class="button-text">Analyze</span>
+            <div class="spinner hidden"></div>
+          </button>
+        </form>
+
+        {% if prediction_text %}
+        <div class="result {{ prediction_class }}">
+          <p>
+            <strong>Prediction:</strong>
+            <span>{{ prediction_text }}</span>
+          </p>
+        </div>
+        {% endif %}
+      </div>
+      <footer>
+        <p>🚀 Developed by Theekshana Thisura</p>
+      </footer>
+    </div>
+
+    <script>
+      document
+        .getElementById("prediction-form")
+        .addEventListener("submit", function () {
+          const button = document.getElementById("analyze-button");
+          button.querySelector(".button-text").classList.add("hidden");
+          button.querySelector(".spinner").classList.remove("hidden");
+          button.disabled = true;
+        });
+    </script>
+  </body>
+</html>
